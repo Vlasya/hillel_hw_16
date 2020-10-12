@@ -3,33 +3,14 @@
 
 
 let tags=['html','head','body'],
-	styles=['color', 'background-color', 'width', 'height']
+	styles=['color', 'background', 'width', 'height']
 
-	// ищу все теги в документе
-for (tagDocument of document.all){
-	if(tags.includes(tagDocument.localName))continue
-	console.dir(tagDocument);
+	
+	for(tagName of document.all){
+		
+		if(tags.includes(tagName.localName)) continue
+		styles.forEach(styleName =>{
+			tagName.style[styleName]='';
 
-	// перебираю все итерируемые стили в теге (нахожу все инлайновые)
-	for(styleTag of tagDocument.style){
-		// перебираю массив со стилями
-		styles.forEach( style=>{
-			
-// если совпадает итерируемы стиль со стилем в массиве,то обнуляю его
-			if(styleTag ===style){
-				console.log('style: ', style);
-				console.log('styleTag: ',styleTag);
-				console.log('tagDocument.style[styleTag]: ', tagDocument.style[styleTag]);
-
-				tagDocument.style[styleTag]=''
-				
-				
-				
-			}
 		})
 	}
-}
-//  но тут  background-color  становится каким-то проклятым, в зависимости от его  порядкогово номера(который прописываю в Диве), он не дает изменить какой-то стиль или не меняется сам(дурачек какой-то). с background не работает.
-				
-				// Получилась рандомная обнулялка
-				// Что со мной не так?)
